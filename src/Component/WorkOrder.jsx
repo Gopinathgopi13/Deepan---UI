@@ -11,7 +11,7 @@ const WorkOrder = () => {
   const fetchData = async () => {
     try {
       let response = await axios.get(
-        `http://localhost:8000/dashboard/documents?name=work`
+        `${import.meta.env.VITE_BACKEND_URL}/documents?name=work`
       );
       setReportData(response.data?.data?.documentData);
     } catch (error) {
@@ -34,7 +34,7 @@ const WorkOrder = () => {
                 <img src={icon} width={20} className="inline-block" />
               </div>
               <div>
-                <p className="text-[16px] font-semibold">{`Report ${report?.name}`}</p>
+                <p className="text-md font-semibold">{`Report ${report?.name}`}</p>
                 <p className="text-xs group-hover:text-white text-gray-500">{`Created ${report?.create}`}</p>
               </div>
             </div>

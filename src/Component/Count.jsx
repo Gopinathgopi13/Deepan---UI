@@ -27,13 +27,14 @@ const Count = () => {
   const [count, setcount] = useState({});
 
   useEffect(() => {
+    console.log(`${import.meta.env.VITE_BACKEND_URL}/count`);
     fetchData();
   }, []);
 
   const fetchData = async () => {
     try {
-      let response = await axios.get(`http://localhost:8000/dashboard`);
-      setcount(response.data.data);
+      let response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/count`);
+      setcount(response?.data?.data);
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +49,7 @@ const Count = () => {
             <PiEqualsBold size={10} className="text-orange-400" />
           </div>
           <div className="font-bold text-xl text-gray-700">
-            {count.residenceCount}
+            {count?.residenceCount ? count?.residenceCount : 0}
           </div>
         </div>
         <div className="md:border-r-[1px] border-gray-300 pr-5">
@@ -57,7 +58,7 @@ const Count = () => {
             <FaSortUp size={10} className="text-green-500" />
           </div>
           <div className="font-bold text-xl text-gray-700">
-            {count.assetsCount}
+            {count?.assetsCount ? count?.assetsCount : 0}
           </div>
         </div>
         <div className="border-r-[1px] border-gray-300 pr-5">
@@ -66,7 +67,7 @@ const Count = () => {
             <FaSortUp size={10} className="text-green-500" />
           </div>
           <div className="font-bold text-xl text-gray-700">
-            {count.contractorCount}
+            {count?.contractorCount ? count?.contractorCount : 0}
           </div>
         </div>
         <div className="md:border-r-[1px] border-gray-300 pr-5">
@@ -77,7 +78,7 @@ const Count = () => {
             <FaSortDown size={10} className="text-red-500" />
           </div>
           <div className="font-bold text-xl text-gray-700">
-            {count.caseCount}
+            {count?.caseCount ? count?.caseCount : 0}
           </div>
         </div>
         <div className="max-sm:border-r-[1px] border-gray-300 pr-5">
@@ -88,7 +89,7 @@ const Count = () => {
             <FaSortUp size={10} className="text-green-500" />
           </div>
           <div className="font-bold text-xl text-gray-700">
-            {count.workOrdersCount}
+            {count?.workOrdersCount ? count?.workOrdersCount : 0}
           </div>
         </div>
       </div>
